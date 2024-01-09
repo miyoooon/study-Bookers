@@ -10,31 +10,22 @@
     <th>
     </th>
   </tr>
+  <% @books.each do |book| %>
     <tr>
       <td>
-        <p>リーダブルコード</p>
-        <p>トラブル知らずのシステム設計</p>
-        <p>たのしいRuby</p>
-        <p>入門Git</p>
-        <p>アルゴリズム図鑑</p>
-        <p>達人プログラマー</p>
-        <p>データベース実践入門</p>
+        <p><%= book.title %></p>
       </td>
       <td>
-        <p>より良いコードを書くためのシンプルで実践的なテクニック</p>
-        <p>システム設計の要点を図解で説明してくれます</p>
-        <p>Rubyの入門におすすめです</p>
-        <p>gitについての基本操作から内部構造まで解説してくれます</p>
-        <p>アルゴリズムについてカラーイラストでしっかり解説してくれます</p>
-        <p>プログラマ入門者は必読!</p>
-        <p>効率的なSQL文を教えてくれます</p>
+        <p><%= book.body %></p>
       </td>
       <td>
-        <%= link_to "Show" %>
+        <%= link_to "Show", book_path(book.id), style: "color:black;" %>
+        <%= link_to "Edit", edit_book_path(book.id), style: "color:black;" %>
+        <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "本当に削除しますか?", style: "color:black;" %>
       </td>
     </tr>
+  <% end %>
 </table>
-
 <h2>New book</h2>
 <%= form_with model: @newbook, url: books_path, method: :post do |f| %>
   <p>title</p>
